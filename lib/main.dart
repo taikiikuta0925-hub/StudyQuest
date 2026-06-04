@@ -24,55 +24,43 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
+
 class _HomePageState extends State<HomePage> {
   int xp = 0;
   int level = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('StudyQuest'),
-      ),
+      appBar: AppBar(title: const Text('StudyQuest')),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            Text(
-              'Level $level',
-              style: TextStyle(fontSize: 32),
-            ),
+            Text('Level $level', style: TextStyle(fontSize: 32)),
             const SizedBox(height: 10),
-            Text(
-              'XP: $xp / 100',
-              style: const TextStyle(fontSize: 20),
-            ),
+            Text('XP: $xp / 100', style: const TextStyle(fontSize: 20)),
+
+            LinearProgressIndicator(value: xp / 100),
             const SizedBox(height: 30),
-            const Text(
-              "Today's Study",
-              style: TextStyle(fontSize: 24),
-            ),
-            const Text(
-              '0 min',
-              style: TextStyle(fontSize: 40),
-            ),
+            const Text("Today's Study", style: TextStyle(fontSize: 24)),
+            const Text('0 min', style: TextStyle(fontSize: 40)),
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
                 setState(() {
                   xp += 10;
+
+                  if (xp >= 100) {
+                    xp = 0;
+                    level += 1;
+                  }
                 });
               },
               child: const Text('Start Study'),
             ),
             const SizedBox(height: 30),
-            const Text(
-              'Current Streak',
-              style: TextStyle(fontSize: 20),
-            ),
-            const Text(
-              '0 Days',
-              style: TextStyle(fontSize: 30),
-            ),
+            const Text('Current Streak', style: TextStyle(fontSize: 20)),
+            const Text('0 Days', style: TextStyle(fontSize: 30)),
           ],
         ),
       ),
