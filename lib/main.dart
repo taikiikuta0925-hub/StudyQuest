@@ -28,6 +28,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int xp = 0;
   int level = 1;
+  int sessions = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +50,7 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 setState(() {
                   xp += 10;
+                  sessions += 1;
 
                   if (xp >= 100) {
                     xp = 0;
@@ -59,6 +61,14 @@ class _HomePageState extends State<HomePage> {
               child: const Text('Start Study'),
             ),
             const SizedBox(height: 30),
+
+            Text(
+              'Study Sessons: $sessions',
+              style: const TextStyle(fontSize: 20),
+            ),
+
+            const SizedBox(height: 20),
+
             const Text('Current Streak', style: TextStyle(fontSize: 20)),
             const Text('0 Days', style: TextStyle(fontSize: 30)),
           ],
