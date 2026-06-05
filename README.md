@@ -1,10 +1,16 @@
 # StudyQuest
 
-A gamified study tracker for students.
+A gamifield study tracker built with flutter.
 
-## Features
+## Current Feautures
 
 - XP System
+- Level System
+- Automatic Level up
+- XP Progress Bar
+
+## Planned Features
+
 - Study Timer
 - Daily Tasks
 - Streak Tracking
