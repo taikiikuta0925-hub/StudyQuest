@@ -30,6 +30,8 @@ class _HomePageState extends State<HomePage> {
   int level = 1;
   int sessions = 0;
   int studyMinutes = 0;
+
+  int xpNeeded = 100;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,9 +42,9 @@ class _HomePageState extends State<HomePage> {
           children: [
             Text('Level $level', style: TextStyle(fontSize: 32)),
             const SizedBox(height: 10),
-            Text('XP: $xp / 100', style: const TextStyle(fontSize: 20)),
+            Text('XP: $xp / $xpNeeded', style: const TextStyle(fontSize: 20)),
 
-            LinearProgressIndicator(value: xp / 100),
+            LinearProgressIndicator(value: xp / xpNeeded),
             const SizedBox(height: 30),
             const Text("Today's Study", style: TextStyle(fontSize: 24)),
             Text('$studyMinutes min', style: const TextStyle(fontSize: 40)),
@@ -52,15 +54,29 @@ class _HomePageState extends State<HomePage> {
                 setState(() {
                   xp += 10;
                   sessions += 1;
+                  studyMinutes += 5;
 
-                  if (xp >= 100) {
+                  if (xp >= xpNeeded) {
                     xp = 0;
                     level += 1;
-                    studyMinutes += 5;
+                    xpNeeded += 25;
                   }
                 });
               },
               child: const Text('Start Study'),
+            ),
+
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  xp = 0;
+                  level = 1;
+                  sessions = 0;
+                  studyMinutes = 0;
+                  xpNeeded = 100;
+                });
+              },
+              child: const Text('Reset'),
             ),
             const SizedBox(height: 30),
 
