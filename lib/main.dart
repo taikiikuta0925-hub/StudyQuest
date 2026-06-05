@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage> {
   int xp = 0;
   int level = 1;
   int sessions = 0;
+  int studyMinutes = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage> {
             LinearProgressIndicator(value: xp / 100),
             const SizedBox(height: 30),
             const Text("Today's Study", style: TextStyle(fontSize: 24)),
-            const Text('0 min', style: TextStyle(fontSize: 40)),
+            Text('$studyMinutes min', style: const TextStyle(fontSize: 40)),
             const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
@@ -55,6 +56,7 @@ class _HomePageState extends State<HomePage> {
                   if (xp >= 100) {
                     xp = 0;
                     level += 1;
+                    studyMinutes += 5;
                   }
                 });
               },
@@ -63,7 +65,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 30),
 
             Text(
-              'Study Sessons: $sessions',
+              'Study Sessions: $sessions',
               style: const TextStyle(fontSize: 20),
             ),
 
