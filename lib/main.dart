@@ -32,6 +32,10 @@ class _HomePageState extends State<HomePage> {
   int studyMinutes = 0;
 
   int xpNeeded = 100;
+  int streak = 0;
+  
+
+  bool isStudying = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,18 +56,25 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               onPressed: () {
                 setState(() {
+
+                  isStudying = !isStudying;
+
+                  if (isStudying) {
                   xp += 10;
                   sessions += 1;
                   studyMinutes += 5;
 
-                  if (xp >= xpNeeded) {
+                   if (xp >= xpNeeded) {
                     xp = 0;
                     level += 1;
                     xpNeeded += 25;
+                    }
                   }
                 });
               },
-              child: const Text('Start Study'),
+              child: Text(
+                isStudying ? 'Stop Study' : 'Start Study',
+              ),
             ),
 
             TextButton(
@@ -74,9 +85,20 @@ class _HomePageState extends State<HomePage> {
                   sessions = 0;
                   studyMinutes = 0;
                   xpNeeded = 100;
+                  streak = 0;
+                  isStudying = false;
                 });
               },
               child: const Text('Reset'),
+            ),
+
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  streak += 1;
+                });
+              },
+              child: const Text('Complete Day'),
             ),
             const SizedBox(height: 30),
 
@@ -88,7 +110,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 20),
 
             const Text('Current Streak', style: TextStyle(fontSize: 20)),
-            const Text('0 Days', style: TextStyle(fontSize: 30)),
+            Text('$streak Days', style: const TextStyle(fontSize: 30),),
           ],
         ),
       ),
