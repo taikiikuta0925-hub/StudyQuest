@@ -33,7 +33,6 @@ class _HomePageState extends State<HomePage> {
 
   int xpNeeded = 100;
   int streak = 0;
-  
 
   bool isStudying = false;
   @override
@@ -56,25 +55,22 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               onPressed: () {
                 setState(() {
-
                   isStudying = !isStudying;
 
                   if (isStudying) {
-                  xp += 10;
-                  sessions += 1;
-                  studyMinutes += 5;
+                    xp += 10;
+                    sessions += 1;
+                    studyMinutes += 5;
 
-                   if (xp >= xpNeeded) {
-                    xp = 0;
-                    level += 1;
-                    xpNeeded += 25;
+                    if (xp >= xpNeeded) {
+                      xp = 0;
+                      level += 1;
+                      xpNeeded += 25;
                     }
                   }
                 });
               },
-              child: Text(
-                isStudying ? 'Stop Study' : 'Start Study',
-              ),
+              child: Text(isStudying ? 'Stop Study' : 'Start Study'),
             ),
 
             TextButton(
@@ -110,7 +106,7 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 20),
 
             const Text('Current Streak', style: TextStyle(fontSize: 20)),
-            Text('$streak Days', style: const TextStyle(fontSize: 30),),
+            Text('$streak Days', style: const TextStyle(fontSize: 30)),
           ],
         ),
       ),
