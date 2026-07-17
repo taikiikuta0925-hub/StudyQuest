@@ -23,4 +23,4 @@ A gamifield study tracker built with flutter.
 
 ## Status
 
-In Development
+Stopping
